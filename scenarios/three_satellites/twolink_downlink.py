@@ -300,8 +300,9 @@ def run(length, max_iter, params, cutoff_time=None, num_memories=1, first_satell
 
 
 if __name__ == "__main__":
-    length_list = np.linspace(0e3, 8000e3, num=16)
+    length_list = np.linspace(0e3, 10, num=16)
     from time import time
+    overall_start = time()
     for length in length_list:
         start_time = time()
         p, w = run(length=length, max_iter=100,
@@ -311,6 +312,7 @@ if __name__ == "__main__":
                    cutoff_time=0.05, num_memories=10, first_satellite_ground_dist_multiplier=0, return_world=True)
         print(f"{length=} finished in {(time()-start_time):.2f} seconds.")
         w.event_queue.print_stats()
+    print(f"program finished in {(time()-overall_start):.2f} seconds.")
     # import matplotlib.pyplot as plt
     # length_list = np.linspace(0e3, 8000e3, num=10)
     # # length_list = [0]
